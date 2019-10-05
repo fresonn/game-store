@@ -1,0 +1,18 @@
+@import "../../variables.scss";
+
+.main_header {
+    background-color: $header-background;
+    // & .nav-link {
+    //     color: $header-item-color;
+    // }
+    .nav .nav-link .hd {
+        color: $header-item-color;
+    }
+}
+
+// .hd {
+//     color: red;
+// }
+.nav-link .hd {
+    color: $header-item-color;
+}
