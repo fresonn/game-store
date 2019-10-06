@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react"
 import "./index.scss"
 import "bootstrap/dist/css/bootstrap.min.css"
+import { Spinner } from "react-bootstrap"
 import Layout from "./hoc/Layout/Layout"
 import { Route, Switch } from "react-router-dom"
 // чуть ускорим с lazy/Suspense
@@ -11,7 +12,7 @@ const Auth = lazy(() => import("./containers/Auth/Auth"))
 const App = props => {
     return (
         <Layout>
-            <Suspense fallback={null}> 
+            <Suspense fallback={<Spinner animation="border" variant="success" />}> 
                 <Switch>
                     <Route path="/market" component={Market}/>
                     <Route path="/cart" component={Cart}/>

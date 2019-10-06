@@ -1,21 +1,26 @@
-import React, { useState } from "react"
+import React from "react"
 import classes from "./Header.module.scss"
-import { Link } from "react-router-dom"
-import { NavbarToggler, Collapse } from "reactstrap"
+import { NavLink } from "react-router-dom"
+import { Navbar, Nav } from "react-bootstrap"
+import logo from "../../assets/svg/logo-icon.svg"
 
 const Header = props => {
 
-    const [isOpen, setOpen] = useState(false)
-
     return (
-        <header className={classes.main_header}>
-            <nav className="navbar navbar-dark navbar-expand-md">
-                <Link className="navbar-brand logo" to="/">
-                    Games
-                    {/* <img src="" alt=""/> */}
-                </Link>
-                <NavbarToggler onClick={() => setOpen(!isOpen)} />
-                <Collapse isOpen={isOpen} navbar>
+        <header>
+            <Navbar className={classes.main_navigation} expand="md">
+                <Navbar.Brand as="div">
+                    <NavLink className={classes.header_logo} to="/">
+                        <img 
+                            src={logo} 
+                            alt="Game Market"
+                            className={classes.golo_img}
+                        />
+                        <span>Games</span>
+                    </NavLink>
+                </Navbar.Brand>
+                <Navbar.Toggle className={classes.toggler} aria-controls="basic-navbar-nav"/>
+                <Navbar.Collapse id="basic-navbar-nav">
                     <ul className="nav navbar-nav ml-auto">
                         {
                             props.navList.map(link => {
@@ -24,16 +29,18 @@ const Header = props => {
                                         key={link.path}
                                         className="nav-item"
                                     >
-                                        <Link className="nav-link" to={link.path}>
-                                            { link.text }
-                                        </Link>
+                                        <Nav.Link as="span">
+                                            <NavLink className={classes.header_link} to={link.path}>
+                                                { link.text }
+                                            </NavLink>
+                                        </Nav.Link>
                                     </li>
                                 )
                             })
                         }
                     </ul>
-                </Collapse>
-            </nav>
+                </Navbar.Collapse>
+            </Navbar>
         </header>
     )
 }

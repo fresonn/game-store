@@ -1,0 +1,61 @@
+@import "../../../variables.scss";
+
+.form_section {
+    padding: 1px;
+    background-image: url("../../../assets/rastr//bf1_tank.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: calc(100vh - 56px);
+}
+
+.form {
+    height: 100%;
+    background-color: #fff;
+    max-width: 600px;
+    padding: 20px 20px 4px 20px;
+    margin: 0;
+    i {
+        color: #1d3c78;
+        margin-right: 6px;
+    }
+    .sub_info {
+        color: $color-for-subtitles;
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+.form_title {
+    h3 {
+        font-family: inherit;
+        font-weight: 500;
+        margin-bottom: 3px;
+        color: $main-black;
+    }
+    p {
+        font-size: 15px;
+        color: $main-black;
+        font-weight: 400;
+    }
+}
+
+.subm_btn {
+    display: block;
+    margin: 0 auto;
+}
+
+@media (min-width: $size-extra-small) {
+    .form {
+        margin: 0;
+        height: auto;
+        box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.3);
+        margin: 0 auto;
+        margin-top: 120px;
+        border-radius: 6px;
+        .sub_info {
+            text-align: start;
+            font-size: 14px;
+        }
+    }
+}
