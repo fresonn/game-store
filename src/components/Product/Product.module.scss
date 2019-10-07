@@ -1,0 +1,63 @@
+@import "../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
+
+.product_box {
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.product {
+    padding: 6px;
+}
+
+.title_box {
+    margin-top: 10px;
+    .product_title {
+        font-size: 18px;
+        margin-bottom: 4px;
+        font-weight: 500;
+    }
+}
+
+.price {
+    font-size: 17px;
+    color: $main-black;
+    strong {
+        font-weight: 500;
+    }
+}
+
+.order_btn {
+    i {
+        margin-left: 5px;
+    }
+}
+
+// Будет только иконка корзины
+@media (max-width: 226px) {
+    .order_btn {
+        span {
+            display: none;
+        }
+        i {
+            margin: 0;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .product {
+        transition: all 0.3s ease-in-out;
+        &:hover {
+            box-shadow: 0 5px 19px 1px rgba(36, 11, 12, 0.15);
+        }
+    }
+
+    .order_btn {
+        span {
+            display: inline;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@import "../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
+
+.auth_form {
+    padding: 0;
+}
+
+@include media-breakpoint-up(sm) {
+    .auth_form {
+        padding: 1px;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        height: calc(100vh - 56px);
+    }
+}
