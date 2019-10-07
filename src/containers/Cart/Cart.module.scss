@@ -1,0 +1,15 @@
+@import "../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
+
+.title {
+    @include for-title;
+}
+
+.car_container {
+}
+
+@include media-breakpoint-up(lg) {
+    .car_container {
+        max-width: 1300px;
+    }
+}

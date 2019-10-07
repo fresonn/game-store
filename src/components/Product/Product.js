@@ -1,6 +1,6 @@
 import React from "react"
 import classes from "./Product.module.scss"
-import Test from "../../assets/rastr/goods/battlefield_v_ps4.jpg"
+import Test from "../../assets/rastr/goods/mc_xl_ps4.jpg"
 import { Card, Col, Button } from "react-bootstrap"
 
 const Product = props => {
@@ -16,7 +16,7 @@ const Product = props => {
             xs={12}
             sm={6}
             md={3}
-            lg={2}
+            xl={2}
 
         >
             <div className={classes.product_box}>
