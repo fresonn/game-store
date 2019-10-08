@@ -13,3 +13,12 @@ $size-extra-small: 576px;
     font-weight: 500;
     margin: 20px 0 15px 10px;
 }
+
+@mixin header-link {
+    color: $header-item-color;
+    transition: all 0.3s;
+    &:hover {
+        text-decoration: none;
+        color: $header-item-color_h;
+    }
+}

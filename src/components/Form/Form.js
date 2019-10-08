@@ -1,9 +1,12 @@
-import React, { useState } from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import classes from "./Form.module.scss"
 import { Formik } from "formik"
 import { Button, Form } from "react-bootstrap"
 import * as Yup from "yup"
+import { connect } from "react-redux"
+import { withRouter } from "react-router-dom"
+import * as auth from "../../redux/actions/authAction"
 
 
 const requiredSchema = Yup.object().shape({
@@ -17,23 +20,24 @@ const requiredSchema = Yup.object().shape({
 
 })
 
-
 const FormComponent = props => {
 
-    const [isLoading, setLoading] = useState(false)
+    const { loginMode, makeAuth, isLoading, isAuth} = props
+    console.log(props)
 
-    const { loginMode } = props
+    useEffect(() => {
+        if (isAuth) {
+            props.history.replace("/market")
+        }
+    })
 
     const logInHandler = values => {
         console.log("values:", values)
         saveDataLocal(values)
-        setLoading(true)
-        // просто пока для теста
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
+        makeAuth({...values}, loginMode)
     }
 
+    // по тз
     const saveDataLocal = data => {
         localStorage.authorizationData = JSON.stringify({...data})
     }
@@ -135,5 +139,18 @@ const FormComponent = props => {
     )
 }
 
+const mapStateToProps = state => {
+    const { auth } = state
+    return {
+        isLoading: auth.loading,
+        isAuth: auth.isUserAuthorized
+    }
+}
 
-export default FormComponent
+const mapDispatchToProps = dispatch => {
+    return {
+        makeAuth: (userData, loginMode) => dispatch(auth.makeAuth(userData, loginMode))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FormComponent))

@@ -14,15 +14,28 @@
 }
 
 .toggler {
-    background: rgb(237, 218, 218);
+    span {
+        background-image: none !important;
+    }
+    background: none;
+    color: $header-item-color !important;
+    border: none;
+    font-size: 25px;
+    outline: none;
 }
 
 .header_link {
-    color: $header-item-color;
-    transition: all 0.3s;
-    &:hover {
-        text-decoration: none;
-        color: $header-item-color_h;
+    @include header-link();
+    i {
+        margin-left: 4px;
+        color: red;
+    }
+}
+
+.login_link {
+    @include header-link();
+    i {
+        margin-left: 4px;
     }
 }
 

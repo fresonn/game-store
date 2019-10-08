@@ -2,7 +2,7 @@ const initialState = {
     navItems: [
         { text: "Market", path: "/market" },
         { text: "Cart", path: "/cart" },
-        { text: "Log in", path: "/login" },
+        { text: "Log Out", path: "/logout" },
     ]
 }
 

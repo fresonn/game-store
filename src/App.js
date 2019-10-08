@@ -5,6 +5,7 @@ import Layout from "./hoc/Layout/Layout"
 import { Route, Switch, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import Loader from "./ui/Loader/Loader"
+import LogOut from "./components/LogOut/LogOut"
 // чуть ускорим с lazy/Suspense
 const Market = lazy(() => import("./containers/Market/Market"))
 const Cart = lazy(() => import("./containers/Cart/Cart"))
@@ -20,11 +21,14 @@ const App = props => {
         <Layout>
             <Suspense fallback={<Loader />}> 
                 <Switch>
+                    
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={Singup}/>
+                    <Route path="/logout" component={LogOut}/>
                     { isUserAuthorized ? <Route path="/market" component={Market}/> : <Redirect to="/login"/> }
                     { isUserAuthorized ? <Route path="/cart" component={Cart}/> : <Redirect to="/login"/> }
                     { isUserAuthorized ? <Route path="/" exact component={Home}/> : <Redirect to="/login"/> }
+                    { isUserAuthorized ? <Route path="/logout" component={LogOut}/> : <Redirect to="/login"/> }
                 </Switch>
             </Suspense>
         </Layout>
