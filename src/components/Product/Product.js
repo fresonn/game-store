@@ -7,8 +7,15 @@ const Product = props => {
 
     const {
         title,
-        price
+        price,
+        img,
+        code,
+        addToCart
     } = props
+
+    const makeOrder = () => {
+        addToCart({title, img, price, code})
+    }
 
     return (
         <Col
@@ -30,7 +37,10 @@ const Product = props => {
                         <strong>{price}</strong>
                         <i className="fas fa-dollar-sign" />
                     </p>
-                    <Button className={classes.order_btn}>
+                    <Button 
+                        onClick={makeOrder}
+                        className={classes.order_btn}
+                    >
                         <span>add to cart</span>
                         <i className="fas fa-cart-plus" />
                     </Button>

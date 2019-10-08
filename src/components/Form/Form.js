@@ -23,7 +23,6 @@ const requiredSchema = Yup.object().shape({
 const FormComponent = props => {
 
     const { loginMode, makeAuth, isLoading, isAuth} = props
-    console.log(props)
 
     useEffect(() => {
         if (isAuth) {

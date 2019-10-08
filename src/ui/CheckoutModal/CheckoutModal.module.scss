@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+.modal_header {
+    padding: 20px;
+}
+
+.modal_title {
+    @include for-title();
+    margin: 0;
+}
+
+.img_box {
+    width: 100%;
+    max-width: 477px;
+    img {
+        max-width: 100%;
+        // width: 100%;
+        height: auto;
+    }
+}
+
+.product_title {
+    @include for-title();
+    // text-align: center;
+    margin-left: 0;
+    font-size: 25px;
+}
+
+.code {
+    font-size: 14px;
+    color: #aeaeae;
+}

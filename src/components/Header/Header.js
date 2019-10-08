@@ -7,7 +7,7 @@ import { connect } from "react-redux"
 
 const Header = props => {
 
-    const { isAuth } = props
+    const { isAuth, cart } = props
 
     return (
         <header>
@@ -38,31 +38,25 @@ const Header = props => {
                         </Navbar.Toggle>
                         <Navbar.Collapse id="user-navbar-nav">
                             <ul className="nav navbar-nav ml-auto">
-                                {
-                                    props.navList.map(link => {
-                                        return (
-                                            <li 
-                                                key={link.path}
-                                                className="nav-item"
-                                            >
-                                                <Nav.Link as="span">
-                                                    <NavLink className={classes.header_link} to={link.path}>
-                                                        { link.text }
-                                                        { 
-                                                            link.path === "/logout" ?  <i className="fas fa-sign-out-alt" />: null
-                                                        }
-                                                    </NavLink>
-                                                </Nav.Link>
-                                            </li>
-                                        )
-                                    })
-                                }
-                                {/* <NavLink as="span">
-                                    <NavLink className={classes.header_link} to="/logout">
+                                <Nav.Link as="li">
+                                    <NavLink className={classes.header_link} to="/market">
+                                        Market
+                                    </NavLink>
+                                </Nav.Link>
+                                <Nav.Link as="li">
+                                    <NavLink className={classes.header_link} to="/cart" >  
+                                        Cart
+                                        {
+                                            cart.length > 0 ? <span className={classes.car_counter}>{ cart.length }</span> : null
+                                        }
+                                    </NavLink>
+                                </Nav.Link>
+                                <Nav.Link as="li">
+                                    <NavLink className={classes.header_link} to="/logout" >  
                                         Log Out
                                         <i className="fas fa-sign-out-alt" />
                                     </NavLink>
-                                </NavLink> */}
+                                </Nav.Link>
                             </ul>
                         </Navbar.Collapse>
                     </>
@@ -76,9 +70,10 @@ const Header = props => {
 }
 
 const mapStateToProps = state => {
-    const { auth } = state
+    const { auth, cart } = state
     return {
-        isAuth: auth.isUserAuthorized
+        isAuth: auth.isUserAuthorized,
+        cart: cart.allGoods
     }
 }
 

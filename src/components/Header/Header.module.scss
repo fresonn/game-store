@@ -26,6 +26,7 @@
 
 .header_link {
     @include header-link();
+    position: relative;
     i {
         margin-left: 4px;
         color: red;
@@ -34,8 +35,10 @@
 
 .login_link {
     @include header-link();
+    margin-left: auto;
     i {
         margin-left: 4px;
+        color: limegreen;
     }
 }
 
@@ -46,4 +49,16 @@
     position: absolute;
     top: -75%;
     left: 107%;
+}
+
+.car_counter {
+    position: absolute;
+    right: -17px;
+    top: -10px;
+    background: red;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
 }

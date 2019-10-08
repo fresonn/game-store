@@ -24,7 +24,6 @@ const App = props => {
                     
                     <Route path="/login" component={Login}/>
                     <Route path="/signup" component={Singup}/>
-                    <Route path="/logout" component={LogOut}/>
                     { isUserAuthorized ? <Route path="/market" component={Market}/> : <Redirect to="/login"/> }
                     { isUserAuthorized ? <Route path="/cart" component={Cart}/> : <Redirect to="/login"/> }
                     { isUserAuthorized ? <Route path="/" exact component={Home}/> : <Redirect to="/login"/> }
