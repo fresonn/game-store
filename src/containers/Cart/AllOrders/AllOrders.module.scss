@@ -1,5 +1,53 @@
+@import "../../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
+
 .cart_list {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.cart_item {
+    position: relative;
+    border-bottom: 1px solid #bababa;
+
+    padding: 0 10px 10px 10px;
+    margin-bottom: 10px;
+}
+
+.img_box {
+    max-width: 125px;
+    img {
+        max-width: 100%;
+    }
+}
+
+.product_name {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.code {
+    font-size: 14px;
+    span {
+        color: $code-color;
+    }
+}
+
+.product_price {
+    font-size: 16px;
+}
+
+.remove_btn {
+    position: absolute;
+    color: #b2b2b2;
+    right: 10px;
+    top: 10px;
+    background: none;
+    outline: none;
+    border: none;
+    transition: all 0.3s;
+    &:hover {
+        color: #989898;
+    }
 }

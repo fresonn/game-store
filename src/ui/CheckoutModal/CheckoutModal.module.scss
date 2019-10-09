@@ -21,12 +21,11 @@
 
 .product_title {
     @include for-title();
-    // text-align: center;
     margin-left: 0;
     font-size: 25px;
 }
 
 .code {
     font-size: 14px;
-    color: #aeaeae;
+    color: $code-color;
 }

@@ -2,13 +2,18 @@ import React from "react"
 import classes from "./Cart.module.scss"
 import AllOrders from "./AllOrders/AllOrders"
 import OrdersInfo from "./OrdersInfo/OrdersInfo"
+import * as cart from "../../redux/actions/cartAction"
 import { Container, Row } from "react-bootstrap"
 import { connect } from "react-redux"
 import EmptyCart from "../../components/EmptyCart/EmptyCart"
 
 const Cart = props => {
 
-    const { allGoods } = props
+    const { allGoods, removeProduct } = props
+
+    const totalSum = allGoods.reduce((sum, product) => {
+        return sum += product.price
+    }, 0)
 
     return (
         <section className={classes.cart}>
@@ -19,8 +24,9 @@ const Cart = props => {
                     <Row>
                         <AllOrders
                             allGoods={allGoods}
+                            removeHandler={removeProduct}
                         />
-                        <OrdersInfo />
+                        <OrdersInfo total={totalSum} />
                     </Row>
             }
             </Container>
@@ -37,9 +43,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addProduct: product => dispatch(product)
+        removeProduct: code => dispatch(cart.removeItemFromCart(code))
     }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

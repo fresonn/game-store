@@ -17,7 +17,7 @@ const Header = props => {
                         <img 
                             src={logo} 
                             alt="Game Market"
-                            className={classes.golo_img}
+                            className={classes.logo_img}
                         />
                         <span>Games</span>
                     </NavLink>

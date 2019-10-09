@@ -1,0 +1,27 @@
+@import "../../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
+
+.info {
+    height: 60px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    color: $main-black;
+    padding: 10px 20px;
+}
+
+.sub_box {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #bababa;
+}
+
+@include media-breakpoint-up(md) {
+    .info {
+        height: 200px;
+        margin-bottom: 0;
+    }
+}

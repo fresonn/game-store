@@ -1,4 +1,5 @@
 @import "../../variables.scss";
+@import "~bootstrap/scss/bootstrap";
 
 .main_navigation {
     background-color: $header-background;
@@ -42,13 +43,14 @@
     }
 }
 
-.golo_img {
-    width: 100%;
-    max-width: 50px;
-    height: auto;
+.logo_img {
+    display: block;
     position: absolute;
     top: -75%;
     left: 107%;
+    width: 100%;
+    max-width: 50px;
+    height: auto;
 }
 
 .car_counter {
@@ -61,4 +63,10 @@
     border-radius: 50%;
     font-size: 12px;
     text-align: center;
+}
+
+@include media-breakpoint-only(xs) {
+    .logo_img {
+        display: none;
+    }
 }

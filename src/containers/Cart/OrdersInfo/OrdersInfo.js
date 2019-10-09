@@ -1,21 +1,20 @@
 import React from "react"
-// import classes from "./OrdersInfo.module.scss"
-import { Col, Row } from "react-bootstrap"
+import classes from "./OrdersInfo.module.scss"
+import { Col } from "react-bootstrap"
 
 const OrdersInfo = props => {
     return (
         <Col
-            xs={4}
+            xs={12}
+            md={4}
+            className="order-0 order-md-1"
         >
-            <Row>
-                <div style={{
-                    width: "100%",
-                    backgroundColor: "limegreen",
-                    height: "130px"
-                }}>
-                    Info
+            <div className={classes.info}>
+                <div className={classes.sub_box}>
+                    <span>Total:</span>
+                    <span>{props.total} USD</span>
                 </div>
-            </Row>
+            </div>
         </Col>
     )
 }

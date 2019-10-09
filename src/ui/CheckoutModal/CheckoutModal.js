@@ -50,7 +50,7 @@ const CheckoutModal = props => {
                                 <span>{fromData.price}</span>
                                 <i className="fas fa-dollar-sign" />
                             </p>
-                            <p>
+                            <p className={classes.product_price}>
                                 code:&nbsp;
                                 <span className={classes.code}>
                                     {fromData.code}
