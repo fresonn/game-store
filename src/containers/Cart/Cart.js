@@ -4,6 +4,7 @@ import AllOrders from "./AllOrders/AllOrders"
 import OrdersInfo from "./OrdersInfo/OrdersInfo"
 import { Container, Row } from "react-bootstrap"
 import { connect } from "react-redux"
+import EmptyCart from "../../components/EmptyCart/EmptyCart"
 
 const Cart = props => {
 
@@ -13,12 +14,15 @@ const Cart = props => {
         <section className={classes.cart}>
             <h1 className={classes.title}>My cart:</h1>
             <Container fluid className={classes.car_container}>
-                <Row>
-                    <AllOrders
-                        allGoods={allGoods}
-                    />
-                    <OrdersInfo />
-                </Row>
+            {
+                allGoods.length === 0 ? <EmptyCart /> :
+                    <Row>
+                        <AllOrders
+                            allGoods={allGoods}
+                        />
+                        <OrdersInfo />
+                    </Row>
+            }
             </Container>
         </section>
     )
