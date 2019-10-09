@@ -31,7 +31,6 @@ const FormComponent = props => {
     })
 
     const logInHandler = values => {
-        console.log("values:", values)
         saveDataLocal(values)
         makeAuth({...values}, loginMode)
     }

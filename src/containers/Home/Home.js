@@ -1,12 +1,8 @@
 import React from "react"
-import classes from "./Home.module.scss"
+import { Redirect } from "react-router-dom"
 
-const Home = props => {
-    return (
-        <div className={classes.home}>
-            <h1>Home</h1>
-        </div>
-    )
-}
+const Home = props => (
+    <Redirect to="/market" />
+)
 
 export default Home

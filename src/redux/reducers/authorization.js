@@ -1,7 +1,7 @@
 import * as AT from "../actionTypes"
 
 const initialState = {
-    isUserAuthorized: true,
+    isUserAuthorized: false,
     loading: false,
     error: null,
     token: null,

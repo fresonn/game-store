@@ -2,19 +2,7 @@ import * as AT from "../actionTypes"
 
 const initialState = {
     totalSum: 0,
-    // allGoods: [], // имеет схему объекта, идентичную схеме товара в марките
-    allGoods: [
-        {
-            title: "Mafia 3",
-            price: 27,
-            code: "idbe38gbu"
-        },
-        {
-            title: "Uncharted 4",
-            price: 20,
-            code: "sdbhbxb8gg"
-        },
-    ]
+    allGoods: [], // имеет схему объекта, идентичную схеме товара в марките
 }
 
 export default (state = initialState, action) => {

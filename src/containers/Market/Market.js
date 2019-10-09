@@ -11,13 +11,9 @@ const Market = props => {
     const [modalShow, setModalShow] = useState(false)
     const [modalData, setModalData] = useState(null)
 
-
-    console.log(props)
-
     const { allGoods, addProduct} = props
 
     const cartHandler = product => {
-        console.log(product)
         addProduct(product)
         setModalData({...product})
         setModalShow(true)

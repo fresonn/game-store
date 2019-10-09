@@ -1,6 +1,5 @@
 import React from "react"
 import classes from "./Product.module.scss"
-import Test from "../../assets/rastr/goods/mc_xl_ps4.jpg"
 import { Card, Col, Button } from "react-bootstrap"
 
 const Product = props => {
@@ -28,7 +27,7 @@ const Product = props => {
         >
             <div className={classes.product_box}>
                 <Card className={classes.product}>
-                    <img className="card-img-top" src={Test} alt={title}/>
+                    <img className="card-img-top" src={img} alt={title}/>
                     <div className={classes.title_box}>
                         <p className={classes.product_title}>{title}</p>
                     </div>

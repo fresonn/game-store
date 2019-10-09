@@ -1,7 +1,6 @@
 import React from "react"
 import classes from "./AllOrders.module.scss"
 import { Col, Row } from "react-bootstrap"
-import test from "../../../assets/rastr/goods/battlefield_v_ps4.jpg"
 
 const AllOrders = props => {
 
@@ -22,12 +21,12 @@ const AllOrders = props => {
                                 as="li"
                                 className={classes.cart_item}
                             >
-                                <Col sm={3}>
+                                <Col sm={12} md={3}>
                                     <div className={classes.img_box}>
-                                        <img src={test} alt={product.title}/>
+                                        <img src={product.img} alt={product.title}/>
                                     </div>
                                 </Col>
-                                <Col sm={9}>
+                                <Col sm={12} md={9}>
                                     <p className={classes.product_name}>{ product.title }</p>
                                     <p className={classes.code}>
                                         Code:&nbsp;

@@ -1,9 +1,10 @@
-import React, { lazy, Suspense } from "react"
+import React, { useEffect, lazy, Suspense } from "react"
 import "./index.scss"
 import "bootstrap/dist/css/bootstrap.min.css"
 import Layout from "./hoc/Layout/Layout"
 import { Route, Switch, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
+import * as cart from "./redux/actions/authAction"
 import Loader from "./ui/Loader/Loader"
 import LogOut from "./components/LogOut/LogOut"
 // чуть ускорим с lazy/Suspense
@@ -15,7 +16,11 @@ const Home = lazy(() => import("./containers/Home/Home"))
 
 const App = props => {
 
-    const { isUserAuthorized } = props
+    const { isUserAuthorized, authWithToken } = props
+
+    useEffect(() => {
+        authWithToken()
+    }, [authWithToken])
 
     return (
         <Layout>
@@ -41,4 +46,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(App)
+const mapDispatchToProps = dispatch => {
+    return {
+        authWithToken: () => dispatch(cart.checkMyToken())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

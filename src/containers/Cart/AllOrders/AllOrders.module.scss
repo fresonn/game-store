@@ -17,6 +17,7 @@
 
 .img_box {
     max-width: 125px;
+    margin: 0 auto;
     img {
         max-width: 100%;
     }
@@ -49,5 +50,11 @@
     transition: all 0.3s;
     &:hover {
         color: #989898;
+    }
+}
+
+@media (min-width: 404px) {
+    .img_box {
+        margin: 0;
     }
 }

@@ -21,9 +21,51 @@ export const successfulAuth = data => {
     }
 }
 
-export const logOut = () => ({
-    type: AT.LOG_OUT
-})
+const clearLocalAuthData = () => {
+    localStorage.removeItem("token")
+    localStorage.removeItem("lifeOfToken")
+    localStorage.removeItem("localId")
+    localStorage.removeItem("authorizationData")
+}
+
+export const logOut = () => {
+    clearLocalAuthData()
+    return {
+        type: AT.LOG_OUT
+    }
+}
+
+const checkTime = dateTime => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logOut())
+        }, dateTime * 1000)
+    }
+}
+
+export const checkMyToken = () => {
+    return dispatch => {
+        const userToken = localStorage.token
+        if (!userToken) {
+            dispatch(logOut())
+        } else {
+            const endOfToken = new Date(localStorage.lifeOfToken)
+            // console.log("endOfToken", endOfToken)
+            // если время еще не настало
+            if (endOfToken > new Date()) {
+                dispatch(successfulAuth({
+                    token: userToken,
+                    userId: localStorage.localId
+                }))
+                dispatch(checkTime(
+                    (endOfToken.getTime() - new Date().getTime() / 1000)
+                ))
+            } else {
+                dispatch(logOut())
+            }
+        }
+    }
+}
 
 export const makeAuth = (userData, loginMode) => {
     return dispatch => {
@@ -41,11 +83,17 @@ export const makeAuth = (userData, loginMode) => {
         axios.post(endPoint, postObject)
             .then(resp => {
                 dispatch(endOfAuth())
-                console.log(resp)
+                localStorage.token = resp.data.idToken
+                localStorage.localId = resp.data.localId
+                // firebase может сохранять токен только 1 час
+                const lifeOfToken = new Date(new Date().getTime() + resp.data.expiresIn * 1000)
+                // console.log(lifeOfToken)
+                localStorage.lifeOfToken = lifeOfToken
                 dispatch(successfulAuth({
                     token: resp.data.idToken,
                     userId: resp.data.localId
                 }))
+                dispatch(checkTime(resp.data.expiresIn))
             })
             .catch(err => {
                 const message = err.response.data.error.message

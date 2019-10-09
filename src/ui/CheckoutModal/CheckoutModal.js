@@ -1,8 +1,6 @@
 import React from "react"
 import classes from "./CheckoutModal.module.scss"
 import { Modal, Button, Container, Row, Col } from "react-bootstrap"
-import test from "../../assets/rastr/goods/mafia_3_ps4.jpg"
-
 
 const CheckoutModal = props => {
     const { 
@@ -14,7 +12,6 @@ const CheckoutModal = props => {
 
     const fromData = {...data}
 
-    console.log(props)
     return (
         <Modal
             show={show}
@@ -34,7 +31,7 @@ const CheckoutModal = props => {
                             className="p-0"
                         >
                             <div className={classes.img_box}>
-                                <img src={test} alt="sdcds"/>
+                                <img src={fromData.img} alt="sdcds"/>
                             </div>
                         </Col>
                         <Col
