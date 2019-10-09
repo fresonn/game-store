@@ -27,7 +27,9 @@ const Product = props => {
         >
             <div className={classes.product_box}>
                 <Card className={classes.product}>
-                    <img className="card-img-top" src={img} alt={title}/>
+                    <div className={classes.img_box}>
+                        <img className="card-img-top" src={img} alt={title}/>
+                    </div>
                     <div className={classes.title_box}>
                         <p className={classes.product_title}>{title}</p>
                     </div>
