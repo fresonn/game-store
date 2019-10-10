@@ -9,8 +9,7 @@ const initialState = {
 const localCart = JSON.parse(localStorage.getItem("localCart"))
 
 if (!localCart) {
-    console.log("no")
-    localStorage.localCart = JSON.stringify([])
+    localStorage.setItem("localCart", JSON.stringify([]))
 } else if (JSON.parse(localStorage.getItem("localCart")).length > 0) {
     initialState.allGoods = [...JSON.parse(localStorage.getItem("localCart"))]
 }

@@ -25,15 +25,11 @@ export const resetError = () => ({
     type: AT.RESET_ERROR
 })
 
-const clearLocalAuthData = () => {
+export const logOut = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("lifeOfToken")
     localStorage.removeItem("localId")
     localStorage.removeItem("authorizationData")
-}
-
-export const logOut = () => {
-    clearLocalAuthData()
     return {
         type: AT.LOG_OUT
     }
@@ -49,18 +45,20 @@ const checkTime = dateTime => {
 
 export const checkMyToken = () => {
     return dispatch => {
-        const userToken = localStorage.token
+        const userToken = localStorage.getItem("token")
         if (!userToken) {
             dispatch(logOut())
         } else {
-            const endOfToken = new Date(localStorage.lifeOfToken)
+            const endOfToken = new Date(localStorage.getItem("lifeOfToken"))
             // console.log("endOfToken", endOfToken)
             // если время еще не настало
             if (endOfToken > new Date()) {
+                const local = localStorage.getItem("localId")
                 dispatch(successfulAuth({
                     token: userToken,
-                    userId: localStorage.localId
+                    userId: local
                 }))
+                console.log((endOfToken.getTime() - new Date().getTime() / 1000))
                 dispatch(checkTime(
                     (endOfToken.getTime() - new Date().getTime() / 1000)
                 ))
@@ -74,12 +72,13 @@ export const checkMyToken = () => {
 export const makeAuth = (userData, loginMode) => {
     return dispatch => {
         // визуализация загрузки
+        console.log(loginMode)
         dispatch(startAuth())
         const apiKey = "AIzaSyBnqdXDys8ALrretHpTvPIyI8tytAKy-J8"
-        let endPoint = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`
+        let endPoint = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`
         if (!loginMode) {
             // Если форма отдаст режим регистрации, тогда этот api
-            endPoint = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`
+            endPoint = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${apiKey}`
         }
 
         const postObject = {...userData, returnSecureToken: true}
@@ -91,7 +90,7 @@ export const makeAuth = (userData, loginMode) => {
                 localStorage.localId = resp.data.localId
                 // firebase может сохранять токен только 1 час
                 const lifeOfToken = new Date(new Date().getTime() + resp.data.expiresIn * 1000)
-                // console.log(lifeOfToken)
+                console.log(resp.data.expiresIn)
                 localStorage.lifeOfToken = lifeOfToken
                 dispatch(successfulAuth({
                     token: resp.data.idToken,
