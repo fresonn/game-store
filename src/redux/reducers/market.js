@@ -1,6 +1,6 @@
 import nano from "nanoid"
 
-const baseImageApi = "https://res.cloudinary.com/dct4oinuz/image/upload/v1570451561/ps4/"
+const baseImageApi = "https://res.cloudinary.com/dct4oinuz/image/upload/w_480,h_600/v1570451561/ps4/"
 
 
 const initialState = {

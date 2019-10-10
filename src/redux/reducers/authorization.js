@@ -42,6 +42,11 @@ export default (state = initialState, action) => {
                 token: null,
                 userId: null
             }
+        case AT.RESET_ERROR:
+            return {
+                ...state,
+                error: null
+            }
         default:
             return state
     }

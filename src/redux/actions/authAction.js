@@ -21,6 +21,10 @@ export const successfulAuth = data => {
     }
 }
 
+export const resetError = () => ({
+    type: AT.RESET_ERROR
+})
+
 const clearLocalAuthData = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("lifeOfToken")

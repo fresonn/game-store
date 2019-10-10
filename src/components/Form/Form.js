@@ -22,13 +22,19 @@ const requiredSchema = Yup.object().shape({
 
 const FormComponent = props => {
 
-    const { loginMode, makeAuth, isLoading, isAuth, isError} = props
+    const { loginMode, makeAuth, isLoading, isAuth, isError, resetError} = props
 
     useEffect(() => {
         if (isAuth) {
             props.history.replace("/market")
         }
     })
+
+    useEffect(() => {
+        return () => {
+            resetError()
+        }
+    }, [resetError])
 
     const logInHandler = values => {
         saveDataLocal(values)
@@ -151,7 +157,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        makeAuth: (userData, loginMode) => dispatch(auth.makeAuth(userData, loginMode))
+        makeAuth: (userData, loginMode) => dispatch(auth.makeAuth(userData, loginMode)),
+        resetError: () => dispatch(auth.resetError())
     }
 }
 
