@@ -2,6 +2,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 .form {
+    position: relative;
     height: 100%;
     background-color: #fff;
     max-width: 600px;
@@ -37,6 +38,13 @@
     max-width: 140px;
     display: block;
     margin: 0 auto;
+}
+
+.form_err {
+    color: rgb(254, 57, 57);
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 @include media-breakpoint-up(sm) {

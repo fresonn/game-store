@@ -22,7 +22,7 @@ const requiredSchema = Yup.object().shape({
 
 const FormComponent = props => {
 
-    const { loginMode, makeAuth, isLoading, isAuth} = props
+    const { loginMode, makeAuth, isLoading, isAuth, isError} = props
 
     useEffect(() => {
         if (isAuth) {
@@ -70,6 +70,9 @@ const FormComponent = props => {
                                             :
                                             <p>or <Link to="/login">log in</Link> to your account</p>
                                     }
+                                </div>
+                                <div>
+                                    { isError ? <p className={classes.form_err}>Error: {isError}</p> : null }
                                 </div>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>
@@ -141,7 +144,8 @@ const mapStateToProps = state => {
     const { auth } = state
     return {
         isLoading: auth.loading,
-        isAuth: auth.isUserAuthorized
+        isAuth: auth.isUserAuthorized,
+        isError: auth.error
     }
 }
 
